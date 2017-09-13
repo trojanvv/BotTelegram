@@ -15,6 +15,7 @@ public class Main {
 
         try {
             botsApi.registerBot(new TrojanBot());
+
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

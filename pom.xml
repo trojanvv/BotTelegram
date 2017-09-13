@@ -8,13 +8,13 @@
     <artifactId>telegram</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-<dependencies>
-    <dependency>
-        <groupId>org.telegram</groupId>
-        <artifactId>telegrambots</artifactId>
-        <version>3.3</version>
-    </dependency>
-</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.telegram</groupId>
+            <artifactId>telegrambots</artifactId>
+            <version>3.3</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -30,19 +30,12 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>org.Trojan.Main</mainClass>
+                    <mainClass>org.trojan.Main</mainClass>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-
         </plugins>
+
+
     </build>
 
 </project>

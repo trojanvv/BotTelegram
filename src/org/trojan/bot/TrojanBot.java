@@ -5,6 +5,8 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
+import static org.trojan.bot.handlerMessage.handler;
+
 public class TrojanBot extends TelegramLongPollingBot {
 
     private String BotUsername = "TrojanBot";
@@ -13,7 +15,14 @@ public class TrojanBot extends TelegramLongPollingBot {
 
 
     public void onUpdateReceived(Update update) {
-
+            switch ("text"){
+                case "text":
+                    try {
+                        sendMessage(handler(update));
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+            }
     }
 
 
