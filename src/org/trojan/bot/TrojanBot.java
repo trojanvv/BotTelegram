@@ -1,37 +1,41 @@
 package org.trojan.bot;
 
-import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.api.objects.Update;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-import static org.trojan.bot.handlerMessage.handler;
+import org.telegram.telegrambots.bots.DefaultBotOptions;
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.trojan.PropertiesLoad;
 
 public class TrojanBot extends TelegramLongPollingBot {
 
-    private String BotUsername = "TrojanBot";
-    private String BotToken = "320949357:AAG1qFA-dQ0a2iEgiojOxU7WN0lpMrt09B0";
 
+    public TrojanBot(DefaultBotOptions botOptions) {
+        super(botOptions);
+    }
 
-
+    @Override
     public void onUpdateReceived(Update update) {
-            switch ("text"){
-                case "text":
-                    try {
-                        sendMessage(handler(update));
-                    } catch (TelegramApiException e) {
-                        e.printStackTrace();
-                    }
+        if (update.hasMessage() && update.getMessage().hasText()) {
+            SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
+                    .setChatId(update.getMessage().getChatId())
+                    .setText(update.getMessage().getText());
+            try {
+                execute(message); // Call method to send the message
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
             }
+        }
     }
 
-
+    @Override
     public String getBotUsername() {
-        return BotUsername;
+        return PropertiesLoad.getVar("BotUsername");
     }
 
-
+    @Override
     public String getBotToken() {
-        return BotToken;
+        return PropertiesLoad.getVar("BotToken");
     }
 }
