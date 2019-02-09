@@ -11,6 +11,10 @@ import org.trojan.PropertiesLoad;
 public class TrojanBot extends TelegramLongPollingBot {
 
 
+    public TrojanBot() {
+        super();
+    }
+
     public TrojanBot(DefaultBotOptions botOptions) {
         super(botOptions);
     }
@@ -20,7 +24,7 @@ public class TrojanBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
                     .setChatId(update.getMessage().getChatId())
-                    .setText(update.getMessage().getText());
+                    .setText(update.getMessage().getText() + "77777777");
             try {
                 execute(message); // Call method to send the message
             } catch (TelegramApiException e) {
